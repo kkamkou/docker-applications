@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker run -v "${PWD}:/opt" -i eslint "$@"
+docker run --rm -i -v "${PWD}:/opt" eslint "$@"
