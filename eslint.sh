@@ -1,13 +1,12 @@
 #!/bin/bash
 
-DIR="${PWD}"
-for (( i=1; i<=$#; i++ )); do
-  case "${!i}" in
-    --stdin-filename)
-      DIR="${DIR/$(dirname ${@:$((i+1))})}"
-    ;;
-    *);;
-  esac
+IFS=";"
+
+CMD="docker run --rm -i"
+for p in `echo "${SUBLIME_ESLINT_FOLDERS:=$PWD}"`; do
+  DIRNAME="/opt/$(basename ${p})"
+  CMD="${CMD} -v '${p}:${DIRNAME}'"
 done
 
-docker run --rm -i -v "${DIR%/}:/opt" eslint "$@"
+CMD="${CMD} -w '${DIRNAME}/`dirname ${SUBLIME_ESLINT_FILE}`' eslint ${@}"
+eval $CMD
