@@ -4,5 +4,5 @@
 ```
 
 ```sh
-alias eslint='docker run --rm -i -v "${PWD}:/opt" composer'
+alias composer='docker run --rm -i -v "${PWD}:/opt" composer'
 ```
