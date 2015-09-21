@@ -4,9 +4,9 @@ IFS=";"
 
 CMD="docker run --rm -i"
 for p in `echo "${SUBLIME_LINTER_FOLDERS:-$PWD}"`; do
-  DIRNAME="/opt/$(basename ${p})"
-  CMD="${CMD} -v '${p}:${DIRNAME}'"
+  [ -z `echo ${SUBLIME_LINTER_FILE:-.} | grep ${p}` ] && continue
+  CMD="${CMD} -v '${p}:${p}'"
 done
 
-CMD="${CMD} -w '${DIRNAME}/`dirname ${SUBLIME_LINTER_FILE:-.}`' eslint ${@}"
+CMD="${CMD} eslint ${@}"
 eval $CMD
