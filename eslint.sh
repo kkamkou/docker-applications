@@ -8,5 +8,5 @@ for p in `echo "${SUBLIME_LINTER_FOLDERS:-$PWD}"`; do
   CMD="${CMD} -v '${p}:${p}'"
 done
 
-CMD="${CMD} eslint ${@}"
+CMD="${CMD} -w '${p}' eslint ${@}"
 eval $CMD
