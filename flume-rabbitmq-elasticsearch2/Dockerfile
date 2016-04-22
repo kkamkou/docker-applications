@@ -31,4 +31,6 @@ RUN rm lib/guava-*.jar \
   && wget "https://github.com/lucidfrontier45/ElasticsearchSink2/releases/download/1.0/elasticsearch-sink2-1.0.jar" \
     -O plugins.d/elasticsearch-sink/lib/elasticsearch-sink.jar
 
-ENTRYPOINT ["/bin/bash"]
+VOLUME "/opt/app/config"
+
+ENTRYPOINT ["bin/flume-ng", "agent", "-n a1", "-c conf", "-f config/flume.cfg", "-Dflume.root.logger=INFO,console"]
