@@ -33,4 +33,4 @@ RUN rm lib/guava-*.jar \
 
 VOLUME "/opt/app/config"
 
-ENTRYPOINT ["bin/flume-ng", "agent", "-n", "a1", "-c", "conf", "-f", "config/flume.cfg"]
+ENTRYPOINT ["bin/flume-ng"]
