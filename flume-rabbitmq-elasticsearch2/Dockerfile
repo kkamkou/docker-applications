@@ -1,4 +1,4 @@
-FROM maven:3.3.3
+FROM maven:3
 
 WORKDIR /opt/app
 
